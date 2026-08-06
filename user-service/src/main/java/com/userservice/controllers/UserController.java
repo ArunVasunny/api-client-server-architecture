@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.userservice.models.UserRequest;
+import com.userservice.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1")
 public class UserController {
     
+    private UserService userService;
+
+    public UserController(UserService userService)
+    {
+        this.userService = userService;
+    }
+
     @PostMapping("/users")
     public void createUser(@RequestBody UserRequest userRequest)
     {

@@ -25,9 +25,9 @@ public class User {
         
     }
 
-    public User(Long id, String name, String email) {
+    public User(String name, String email) {
         this.name = name;
-        this.id = id;
+        this.email = email;
     }
 
     public String getName() {

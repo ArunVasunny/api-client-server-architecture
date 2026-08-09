@@ -27,5 +27,6 @@ public class UserController {
     {
         System.out.println("User Created");
         System.out.println(userRequest);
+        userService.saveUser(userRequest);
     }
 }

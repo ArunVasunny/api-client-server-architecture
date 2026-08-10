@@ -16,10 +16,10 @@ public class UserService {
         this.userRepo = userRepository;
     }
 
-    public void saveUser(UserRequest userRequest)
+    public User saveUser(UserRequest userRequest)
     {
         User user = new User(userRequest.name(), userRequest.email());
-        userRepo.save(user);
+        return userRepo.save(user);
     }
     
 }

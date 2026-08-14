@@ -1,5 +1,6 @@
 package com.userservice.controllers;
 
+import com.userservice.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.userservice.entity.User;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/v1")
 public class UserController {
     
+    private final UserRepository userRepository;
     private UserService userService;
 
-    public UserController(UserService userService)
+    public UserController(UserService userService, UserRepository userRepository)
     {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/users")
@@ -32,4 +35,5 @@ public class UserController {
         // return ResponseEntity.status(HttpStatus.CREATED).body(userRespo);
         return ResponseEntity.created(URI.create("/api/v1/users" + user.getId())).body(userRespo);
     }
+
 }

@@ -11,6 +11,10 @@ import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -35,5 +39,12 @@ public class UserController {
         // return ResponseEntity.status(HttpStatus.CREATED).body(userRespo);
         return ResponseEntity.created(URI.create("/api/v1/users" + user.getId())).body(userRespo);
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserResponse> getUser(@PathVariable long id) {
+        UserResponse userResponse = userService.getUserById(id);
+        return ResponseEntity.ok(userResponse);
+    }
+    
 
 }

@@ -1,9 +1,12 @@
 package com.userservice.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.userservice.entity.User;
 import com.userservice.models.UserRequest;
+import com.userservice.models.UserResponse;
 import com.userservice.repository.UserRepository;
 
 @Service
@@ -22,4 +25,15 @@ public class UserService {
         return userRepo.save(user);
     }
     
+    public UserResponse getUserById(Long id)
+    {
+        Optional<User> data = userRepo.findById(id);
+        User user = null;
+        if(data.isPresent())
+        {
+            user = data.get();
+        }
+        UserResponse userResponse = new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return userResponse;
+    }
 }

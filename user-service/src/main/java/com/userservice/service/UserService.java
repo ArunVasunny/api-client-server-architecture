@@ -1,9 +1,7 @@
 package com.userservice.service;
 
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.userservice.entity.User;
 import com.userservice.models.UserRequest;
 import com.userservice.models.UserResponse;
@@ -32,6 +30,10 @@ public class UserService {
         if(data.isPresent())
         {
             user = data.get();
+        }
+        else
+        {
+            throw new RuntimeException("User with ID = " + id + " not found");   
         }
         UserResponse userResponse = new UserResponse(user.getId(), user.getName(), user.getEmail());
         return userResponse;

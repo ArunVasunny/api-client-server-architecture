@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<APIError> handleRuntimeException(RuntimeException ex, HttpServletRequest servlet)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<APIError> handleRuntimeException(ResourceNotFoundException ex, HttpServletRequest servlet)
     {
         HttpStatus status = HttpStatus.NOT_FOUND;
         String path = servlet.getRequestURI();

@@ -3,6 +3,7 @@ package com.userservice.service;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.userservice.entity.User;
+import com.userservice.exception.ResourceNotFoundException;
 import com.userservice.models.UserRequest;
 import com.userservice.models.UserResponse;
 import com.userservice.repository.UserRepository;
@@ -33,7 +34,7 @@ public class UserService {
         }
         else
         {
-            throw new RuntimeException("User with ID = " + id + " not found");   
+            throw new ResourceNotFoundException("User with ID = " + id + " not found");   
         }
         UserResponse userResponse = new UserResponse(user.getId(), user.getName(), user.getEmail());
         return userResponse;

@@ -26,16 +26,7 @@ public class UserService {
     
     public UserResponse getUserById(Long id)
     {
-        Optional<User> data = userRepo.findById(id);
-        User user = null;
-        if(data.isPresent())
-        {
-            user = data.get();
-        }
-        else
-        {
-            throw new ResourceNotFoundException("User with ID = " + id + " not found");   
-        }
+        User user = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with ID = " + id + " not found"));
         UserResponse userResponse = new UserResponse(user.getId(), user.getName(), user.getEmail());
         return userResponse;
     }

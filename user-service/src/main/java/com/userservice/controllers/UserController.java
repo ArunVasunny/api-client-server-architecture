@@ -8,12 +8,12 @@ import com.userservice.models.UserRequest;
 import com.userservice.models.UserResponse;
 import com.userservice.service.UserService;
 import java.net.URI;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 
 
 @RestController
@@ -44,6 +44,11 @@ public class UserController {
         UserResponse userResponse = userService.getUserById(id);
         return ResponseEntity.ok(userResponse);
     }
-    
 
+    @GetMapping("/users")
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<UserResponse> userList = userService.getAllUsers();
+        return ResponseEntity.ok(userList);
+    }
+    
 }

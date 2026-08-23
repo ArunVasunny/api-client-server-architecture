@@ -40,4 +40,9 @@ public class UserService {
         }
         return userResponseList;
     }
+
+    public void deleteById(Long id)
+    {
+        userRepo.deleteById(id);
+    }
 }

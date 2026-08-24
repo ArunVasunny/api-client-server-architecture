@@ -45,4 +45,13 @@ public class UserService {
     {
         userRepo.deleteById(id);
     }
+
+    public UserResponse updateUserById(Long id,UserRequest userRequest)
+    {
+        User user = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with ID = " + id + " not found"));
+        user.setName(userRequest.name());
+        user.setEmail(userRequest.email());
+        User savedUser = userRepo.save(user);
+        return new UserResponse(savedUser.getId(), savedUser.getName(), savedUser.getEmail());
+    }
 }

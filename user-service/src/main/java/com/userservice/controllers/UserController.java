@@ -7,6 +7,7 @@ import com.userservice.entity.User;
 import com.userservice.models.UserRequest;
 import com.userservice.models.UserResponse;
 import com.userservice.service.UserService;
+import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest)
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest)
     {
         System.out.println(userRequest);
         User user = userService.saveUser(userRequest);
@@ -63,7 +64,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<UserResponse> updateUser(@PathVariable long id, @RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> updateUser(@PathVariable long id, @Valid @RequestBody UserRequest userRequest) {
         
         UserResponse userResponse = userService.updateUserById(id, userRequest);
         return ResponseEntity.ok(userResponse);

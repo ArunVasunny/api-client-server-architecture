@@ -7,13 +7,18 @@ import com.example.emailservice.model.UserResponse;
 @Service
 public class UserService {
     
-    RestClient restClient = RestClient.create();
+    RestClient restClient;
     
+    public UserService(RestClient restClient)
+    {
+        this.restClient = restClient;
+    }
+
     public UserResponse getUserById(int id)
     {   
         UserResponse userResponse = restClient
                                     .get()
-                                    .uri("http://localhost:8080/api/v1/users/{id}",id)
+                                    .uri("users/{id}",id)
                                     .retrieve()
                                     .body(UserResponse.class);
         return userResponse;
@@ -23,7 +28,7 @@ public class UserService {
     {
         UserResponse userResponse = restClient
                                     .post()
-                                    .uri("http://localhost:8080/api/v1/users")
+                                    .uri("/users")
                                     .body(userRequest)
                                     .retrieve()
                                     .body(UserResponse.class);

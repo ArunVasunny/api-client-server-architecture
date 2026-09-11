@@ -18,7 +18,7 @@ public class UserService {
     {   
         UserResponse userResponse = restClient
                                     .get()
-                                    .uri("users/{id}",id)
+                                    .uri("/users/{id}",id)
                                     .retrieve()
                                     .body(UserResponse.class);
         return userResponse;

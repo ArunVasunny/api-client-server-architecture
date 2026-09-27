@@ -1,5 +1,6 @@
 package com.example.emailservice.service;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import com.example.emailservice.model.UserRequest;
@@ -46,5 +47,15 @@ public class UserService {
                                     .retrieve()
                                     .body(UserResponse.class);
         return  userResponse;
+    }
+
+    public void deleteUser(int id)
+    {
+        ResponseEntity<Void> response = restClient
+                                    .delete()
+                                    .uri("/users/{id}",id)
+                                    .retrieve()
+                                    .toBodilessEntity();
+        System.out.println(response);
     }
 }

@@ -23,7 +23,7 @@ public class EmailserviceApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		UserResponse admin = userService.createUser(new UserRequest("admin", "admin@google.com"));
+		UserResponse admin = userService.updateUser(2,new UserRequest("john", "john@google.com"));
 		System.out.println(admin);
 	}
 

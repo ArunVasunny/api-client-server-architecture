@@ -1,4 +1,5 @@
 package com.example.emailservice.service;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import com.example.emailservice.model.UserRequest;
@@ -33,5 +34,17 @@ public class UserService {
                                     .retrieve()
                                     .body(UserResponse.class);
         return userResponse;
+    }
+
+    public UserResponse updateUser(int id, UserRequest userRequest)
+    {
+        UserResponse userResponse = restClient
+                                    .put()
+                                    .uri("/users/{id}",id)
+                                    .contentType(MediaType.APPLICATION_JSON)
+                                    .body(userRequest)
+                                    .retrieve()
+                                    .body(UserResponse.class);
+        return  userResponse;
     }
 }
